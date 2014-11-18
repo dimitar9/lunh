@@ -1,9 +1,11 @@
-- for (var i = 3; i < posts.length+3; i = i + 3)
+- for (var i = 1; i < posts.length; i = i + 1)
   div.row
-    - for(var j = i-3; j < i && j < posts.length; j++)
-      div.col-md-4
+    - for(var j = i-1; j < i && j < posts.length; j++)
+      div(style='word-wrap: break-word; width:600px;')
         h2
           a(href='/u/'+posts[j].user)=posts[j].user 
-              !='说'
+              !=' 说'
         p!='<small>' + posts[j].time + '</small>'
-        p=posts[j].post
+        p!= posts[j].post
+
+// if change i to 3 and i+1 to i+3 it will show 3 colums. But it's ugly.

@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 		posts = [];
 	}
 	res.render('index', {
-		title: 'microblog',
+		title: 'LunchDecider',
 		posts: posts,
 		user : req.session.user,
             success : req.flash('success').toString(),

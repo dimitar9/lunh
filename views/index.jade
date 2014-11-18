@@ -5,11 +5,11 @@ block bcontent
     div.container
       - if (!user)
       
-        h1 欢迎来到Tony的微博平台
-        p 这是一个基于Node.js的微博开源平台。
+        h1 Welcome to lunch decider
+        p This is for people who want to go lunch togeter discuss and decide when where and how.
         p
-          a(class='btn btn-primary btn-lg' href='/login' role="button") 登录
-          a(class='btn btn-lg' href='/reg' role="button") 注册
+          a(class='btn btn-primary btn-lg' href='/login' role="button") Sign-in
+          a(class='btn btn-lg' href='/reg' role="button") Sign-up
       - else
         include ./say.jade
   div.container
