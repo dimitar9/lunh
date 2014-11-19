@@ -1,0 +1,28 @@
+h2 {
+    color:0x0033cd;
+    font-family:verdana;
+    font-size:200%;
+}
+
+
+
+
+form {
+
+    margin:auto;
+    position:relative;
+    width:550px;
+
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 24px;
+    font-weight: bold;
+    color: #09C;
+    text-decoration: none;
+
+
+    padding:10px;
+
+
+}

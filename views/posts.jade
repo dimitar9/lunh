@@ -1,11 +1,47 @@
+
+h2 Please select the restraunt you would like to go this noon.
+
+form(method='post', action="/poll")
+  input(type='radio', value='Mandarin', name='chose_restraunt')
+  |       Mandarin
+  br
+  input(type='radio', value='HongkongTaste', name='chose_restraunt')
+  |       Hong Kong Taste 大排档
+  br
+  input(type='radio', value='China88', name='chose_restraunt')
+  |       88 China restraunt
+  br
+  input(type='radio', value='SichuanVillage', name='chose_restraunt')
+  |       Sichuan Village 川菜香
+  br
+  input(type='radio', value='HibachiBuffet', name='chose_restraunt')
+  |       Hibachi Buffet
+  br
+  input(type='radio', value='SizzlingExpress', name='chose_restraunt')
+  |       Sizzling Express
+  br
+  input(type='radio', value='PhoNew', name='chose_restraunt')
+  |       Pho New
+  br
+  input(type='submit', value='Submit')
+
+  a(href='/poll_result')
+
+form(method='get')
+  input(type='button', value='Check today\'s result')
+
+
 - for (var i = 1; i < posts.length; i = i + 1)
   div.row
     - for(var j = i-1; j < i && j < posts.length; j++)
       div(style='word-wrap: break-word; width:600px;')
-        h2
-          a(href='/u/'+posts[j].user)=posts[j].user 
-              !=' 说'
-        p!='<small>' + posts[j].time + '</small>'
         p!= posts[j].post
+        h6
+          a(href='/u/'+posts[j].user)=posts[j].user
+              !='<small>' + ' Said' + '</small>'
+        p!='<small>' + posts[j].time + '</small>'
 
-// if change i to 3 and i+1 to i+3 it will show 3 colums. But it's ugly.
+
+
+
+    // if change i to 3 and i+1 to i+3 it will show 3 colums. But it's ugly.
