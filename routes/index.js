@@ -198,6 +198,24 @@ router.get("/poll_sucess",function(req,res) {
   });
 });
 
+router.get("/poll_result",function(req,res) {
 
+  Restraunt.get(function(err, restraunt_chosen) {
+    if (err) {
+      restraunt_chosen = [];
+      console.log('error:');
+      console.log(err);
+    }
+    console.log(restraunt_chosen);
+    res.render('poll_result', {
+      title: 'Poll result',
+      chosen_restraunt: restraunt_chosen._id
+    });
+  });
+
+
+
+
+});
 
 module.exports = router;

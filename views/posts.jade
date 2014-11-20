@@ -25,11 +25,11 @@ form(method='post', action="/poll")
   br
   input(type='submit', value='Submit')
 
-  a(href='/poll_result')
-
-form(method='get')
-  input(type='button', value='Check today\'s result')
-
+  br
+  br
+  br
+  p
+    a(class='btn btn-primary btn-lg' href='/poll_result' role="button") Check today's result
 
 - for (var i = 1; i < posts.length; i = i + 1)
   div.row

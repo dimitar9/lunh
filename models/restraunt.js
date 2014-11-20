@@ -41,7 +41,7 @@ Restraunt.prototype.save = function save(callback) {
     });
 };
 
-Restraunt.get = function get(username, callback) {
+Restraunt.get = function get( callback) {
     mongodb.open(function(err, db) {
         if (err) {
             return callback(err);
@@ -53,22 +53,26 @@ Restraunt.get = function get(username, callback) {
                 return callback(err);
             }
             var query = {};
-            if (username) {
-                query.user = username;
-            }
-            collection.find(query).sort({time: -1}).toArray(function(err, docs) {
-                mongodb.close();
-                if (err) {
-                    callback(err, null);
+            collection.aggregate([
+                {"$group":
+                {"_id": "$restraunt_name",
+                    "value": {"$sum": 1}
                 }
-
-                var restraunts = [];
-                docs.forEach(function(doc, index) {
-                    var restraunt = new Restraunt(doc.user, doc.restraunt_name, doc.time);
-                    restraunts.push(restraunt);
-                });
-                callback(null, restraunts);
+                },
+                {"$sort": {"value": -1}},
+                {"$limit": 5}
+            ] , function (err, result) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log(result[0]);
+                restraunt_chosen = result[0];
+                callback(null, restraunt_chosen);
             });
+
         });
     });
 };
+
+
