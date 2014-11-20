@@ -20,7 +20,7 @@ if(cluster.isMaster) {
 else {
   //工作进程分支，启动服务器
   var app = require('./app');
-  app.listen(8080);
+  app.listen(5000);
   console.log("Express服务器启动, 开始监听8080端口, 以 %s 模式运行.", app.settings.env);
 }
 //当主进程被终止时，关闭所有工作进程
