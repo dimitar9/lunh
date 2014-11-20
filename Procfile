@@ -1,1 +1,1 @@
-web: NODE_ENV=production node cluster.js
+web: node app.js
