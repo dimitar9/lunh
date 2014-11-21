@@ -1,4 +1,7 @@
 var uri = process.env.MONGOLAB_URI
+
+//var uri = 'mongodb://localhost:27017/blog'
+
 var mongodb_driver = require('mongodb');
 
 
@@ -36,7 +39,7 @@ Post.prototype.save = function save(callback) {
 			// collection.ensureIndex('user');
 
 			collection.insert(post, {safe: true}, function(err, post) {
-				mongodb.close();
+				db.close();
 				callback(err, post);
 			});
 		});
@@ -51,7 +54,7 @@ Post.get = function get(username, callback) {
 		console.log('db connected.')
 		db.collection('posts', function(err, collection) {
 			if (err) {
-				mongodb.close();
+				db.close();
 				return callback(err);
 			}
 			var query = {};

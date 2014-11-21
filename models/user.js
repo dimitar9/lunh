@@ -1,4 +1,5 @@
 var uri = process.env.MONGOLAB_URI
+//var uri = 'mongodb://localhost:27017/blog'
 var mongodb_driver = require('mongodb');
 
 
@@ -31,7 +32,7 @@ User.prototype.save = function save(callback) {
 
 			//写入user文档
 			collection.insert(user, {safe: true}, function(err, user) {
-				mongodb.close();
+				db.close();
 				callback(err, user);
 			});
 		});
@@ -51,7 +52,7 @@ User.get = function get(username, callback) {
 			}
 			//查找name属性为username的文档
 			collection.findOne({name: username}, function(err, doc) {
-				mongodb.close();
+				db.close();
 				if (doc) {
 					//封装文档为User对象
 					var user = new User(doc);

@@ -1,5 +1,6 @@
 var uri = process.env.MONGOLAB_URI
 var mongodb_driver = require('mongodb');
+//var uri = 'mongodb://localhost:27017/blog'
 
 
 function Restraunt(username,restraunt_name,time) {
@@ -29,7 +30,7 @@ Restraunt.prototype.save = function save(callback) {
 
         db.collection('restraunts', function(err, collection) {
             if (err) {
-                mongodb.close();
+                db.close();
                 return callback(err);
             }
 

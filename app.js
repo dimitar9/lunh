@@ -13,8 +13,12 @@ var settings = require('./settings');
 var flash = require('connect-flash');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 var mongolab_uri = process.env.MONGOLAB_URI
+//var mongolab_uri = 'mongodb://localhost:27017/blog'
+
 var app = express();
+
 var Session = require('connect-mongodb');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +41,10 @@ var mongodb_options = {
     db: settings.db,
     host: 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com',
     port: '51740/heroku_app31786437',
+
+    //host: '127.0.0.1',
+    //port: '27017',
+
     stringify: true,
     collection: 'sessions',
     auto_reconnect: true,
