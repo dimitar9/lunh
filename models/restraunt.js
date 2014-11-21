@@ -1,5 +1,6 @@
+var uri = 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com:51740/heroku_app31786437';
 var mongodb_driver = require('mongodb');
-var uri = 'mongodb://user:pass@host:port/db';
+
 
 function Restraunt(username,restraunt_name,time) {
     this.user = username;
@@ -21,7 +22,7 @@ Restraunt.prototype.save = function save(callback) {
         restraunt_name: this.restraunt_name,
         time: this.time,
     };
-    mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db)  {
+    mongodb_driver.MongoClient.connect(uri, function (err, db)  {
         if (err) {
             return callback(err);
         }
@@ -35,7 +36,7 @@ Restraunt.prototype.save = function save(callback) {
             // collection.ensureIndex('user');
 
             collection.insert(restraunt, {safe: true}, function(err, restraunt) {
-                mongodb.close();
+                db.close();
                 callback(err, restraunt);
             });
         });
@@ -43,14 +44,14 @@ Restraunt.prototype.save = function save(callback) {
 };
 
 Restraunt.get = function get( callback) {
-    mongodb.open(function(err, db) {
+    mongodb_driver.MongoClient.connect(uri, function (err, db) {
         if (err) {
             return callback(err);
         }
 
         db.collection('restraunts', function(err, collection) {
             if (err) {
-                mongodb.close();
+                db.close();
                 return callback(err);
             }
             var query = {};

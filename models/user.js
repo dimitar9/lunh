@@ -1,5 +1,6 @@
+var uri = 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com:51740/heroku_app31786437';
 var mongodb_driver = require('mongodb');
-var uri = 'mongodb://user:pass@host:port/db';
+
 
 
 function User(user) {
@@ -15,14 +16,14 @@ User.prototype.save = function save(callback) {
 		name: this.name,
 		password: this.password,
 	};
-	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db) {
+	mongodb_driver.MongoClient.connect(uri, function (err, db) {
 		if (err) {
 			return callback(err);
 		}
 		//读取users集合
 		db.collection('users', function(err, collection) {
 			if (err) {
-				mongodb.close();
+				db.close();
 				return callback(err);
 			}
 			// 为name属性添加索引
@@ -38,14 +39,14 @@ User.prototype.save = function save(callback) {
 }
 
 User.get = function get(username, callback) {
-	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db) {
+	mongodb_driver.MongoClient.connect(uri, function (err, db) {
 		if (err) {
 			return callback(err);
 		}
 		//读取users集合
 		db.collection('users', function(err, collection) {
 			if (err) {
-				mongodb.close();
+				db.close();
 				return callback(err);
 			}
 			//查找name属性为username的文档

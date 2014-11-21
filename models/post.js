@@ -1,5 +1,6 @@
+var uri = 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com:51740/heroku_app31786437';
 var mongodb_driver = require('mongodb');
-var uri = 'mongodb://user:pass@host:port/db';
+
 
 function Post(username,post,time) {
 	this.user = username;
@@ -21,14 +22,14 @@ Post.prototype.save = function save(callback) {
 		post: this.post,
 		time: this.time,
 	};
-	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db)  {
+	mongodb_driver.MongoClient.connect(uri, function (err, db)  {
 		if (err) {
 			return callback(err);
 		}
 
 		db.collection('posts', function(err, collection) {
 			if (err) {
-				mongodb.close();
+				db.close();
 				return callback(err);
 			}
 
@@ -43,11 +44,11 @@ Post.prototype.save = function save(callback) {
 };
 
 Post.get = function get(username, callback) {
-	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db)  {
+	mongodb_driver.MongoClient.connect(uri, function (err, db)  {
 		if (err) {
 			return callback(err);
 		}
-
+		console.log('db connected.')
 		db.collection('posts', function(err, collection) {
 			if (err) {
 				mongodb.close();
@@ -58,7 +59,7 @@ Post.get = function get(username, callback) {
 				query.user = username;
 			}
 			collection.find(query).sort({time: -1}).toArray(function(err, docs) {
-				mongodb.close();
+				db.close();
 				if (err) {
 					callback(err, null);
 				}

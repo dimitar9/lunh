@@ -57,7 +57,7 @@ app.use(function(req, res, next){
 app.use('/', routes);
 if (!module.parent) {
     app.listen(process.env.PORT || 5000)
-  //console.log("Express服务器启动, 开始监听 %d 端口, 以 %s 模式运行.", app.address().port, app.settings.env);
+  console.log("Express服务器启动.");
 }
 
 app.use('/users', users);
