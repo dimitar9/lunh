@@ -32,12 +32,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
+
+var mongodb_options = {
+    db: 'heroku_app31786437',
+    host: 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com',
+    port: 51740,
+    stringify: true,
+    collection: 'sessions',
+    auto_reconnect: false,
+    ssl: false,
+    w: 1,
+    defaultExpirationTime:  1000 * 60 * 60 * 24 * 14
+};
+
 //提供session支持
 app.use(session({
   secret: settings.cookieSecret,
-  store: new MongoStore({
-      db: settings.db,
-  })
+  store: new MongoStore(
+      mongodb_options
+  )
 }));
 
 
