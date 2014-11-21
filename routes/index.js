@@ -42,7 +42,7 @@ router.get('/blog', function(req, res) {
 router.get("/reg", checkNotLogin);
 router.get("/reg",function(req,res) {
   res.render("reg",{
-    title : "用户注册"
+    title : "User Registration"
   });
 });
 
@@ -132,10 +132,10 @@ function checkNotLogin(req, res, next) {
   next();
 }
 function checkLogin(req, res, next) {
-  if (!req.session.user) {
-    req.flash('error', 'User not logged in');
-    return res.redirect('/login');
-  }
+  //if (!req.session.user) {
+  //  req.flash('error', 'User not logged in');
+  //  return res.redirect('/login');
+  //}
   next();
 }
 
