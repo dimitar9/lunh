@@ -33,24 +33,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 
-var mongodb_options = {
-    db: 'heroku_app31786437',
-    host: 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com',
-    port: '51740/heroku_app31786437',
-    stringify: true,
-    collection: 'sessions',
-    auto_reconnect: false,
-    ssl: false,
-    w: 1,
-    defaultExpirationTime:  1000 * 60 * 60 * 24 * 14
-};
-
+//var mongodb_options = {
+//    db: 'heroku_app31786437',
+//    host: 'mongodb://heroku_app31786437:e65g3btvanua3gfbmk6s23gl5v@ds051740.mongolab.com',
+//    port: '51740/heroku_app31786437',
+//    stringify: true,
+//    collection: 'sessions',
+//    auto_reconnect: false,
+//    ssl: false,
+//    w: 1,
+//    defaultExpirationTime:  1000 * 60 * 60 * 24 * 14
+//};
+//
 //提供session支持
 app.use(session({
   secret: settings.cookieSecret,
-  store: new MongoStore(
-      mongodb_options
-  )
+  //store: new MongoStore(
+  //    mongodb_options
+  //)
 }));
 
 
@@ -60,7 +60,7 @@ app.use(function(req, res, next){
   res.locals.post = req.session.post;
   var error = req.flash('error');
   res.locals.error = error.length ? error : null;
- 
+
   var success = req.flash('success');
   res.locals.success = success.length ? success : null;
   next();
