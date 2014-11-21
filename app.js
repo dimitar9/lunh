@@ -39,10 +39,10 @@ var mongodb_options = {
     port: '51740/heroku_app31786437',
     stringify: true,
     collection: 'sessions',
-    auto_reconnect: false,
+    auto_reconnect: true,
     ssl: false,
     w: 1,
-    defaultExpirationTime:  1000 * 60 * 60 * 24 * 14
+    
 };
 //
 //提供session支持
