@@ -13,7 +13,7 @@ var settings = require('./settings');
 var flash = require('connect-flash');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var mongolab_uri = process.env.MONGOLAB_URI
 var app = express();
 
 // view engine setup
@@ -42,15 +42,16 @@ var mongodb_options = {
     auto_reconnect: true,
     ssl: false,
     w: 1,
-    
+
 };
 //
 //提供session支持
 app.use(session({
   secret: settings.cookieSecret,
-  store: new MongoStore(
-      mongodb_options
-  )
+    store: new Session({
+        url: mongolab_uri,
+        maxAge: 300000
+    }),
 }));
 
 
