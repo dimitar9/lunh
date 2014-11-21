@@ -1,4 +1,6 @@
-var mongodb = require('./db');
+var mongodb_driver = require('mongodb');
+var uri = 'mongodb://user:pass@host:port/db';
+
 
 function User(user) {
 	this.name = user.name;
@@ -13,8 +15,7 @@ User.prototype.save = function save(callback) {
 		name: this.name,
 		password: this.password,
 	};
-
-	mongodb.open(function(err, db) {
+	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db) {
 		if (err) {
 			return callback(err);
 		}
@@ -37,7 +38,7 @@ User.prototype.save = function save(callback) {
 }
 
 User.get = function get(username, callback) {
-	mongodb.open(function(err, db) {
+	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db) {
 		if (err) {
 			return callback(err);
 		}

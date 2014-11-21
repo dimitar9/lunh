@@ -1,4 +1,5 @@
-var mongodb = require('./db');
+var mongodb_driver = require('mongodb');
+var uri = 'mongodb://user:pass@host:port/db';
 
 function Post(username,post,time) {
 	this.user = username;
@@ -20,7 +21,7 @@ Post.prototype.save = function save(callback) {
 		post: this.post,
 		time: this.time,
 	};
-	mongodb.open(function(err, db) {
+	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db)  {
 		if (err) {
 			return callback(err);
 		}
@@ -42,7 +43,7 @@ Post.prototype.save = function save(callback) {
 };
 
 Post.get = function get(username, callback) {
-	mongodb.open(function(err, db) {
+	mongodb_driver.MongoClient.connect(process.env.MONGOLAB_URL, function (err, db)  {
 		if (err) {
 			return callback(err);
 		}
