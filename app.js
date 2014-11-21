@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session    = require('express-session');
-var MongoStore = require('connect-mongo')(session);
+//var MongoStore = require('connect-mongo')(session);
 var settings = require('./settings');
 var flash = require('connect-flash');
 var routes = require('./routes/index');
@@ -32,13 +32,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
-//提供session支持
-app.use(session({
-  secret: settings.cookieSecret,
-  store: new MongoStore({
-      db: settings.db,
-  })
-}));
+////提供session支持
+//app.use(session({
+//  secret: settings.cookieSecret,
+//  store: new MongoStore({
+//      db: settings.db,
+//  })
+//}));
 
 
 app.use(function(req, res, next){
