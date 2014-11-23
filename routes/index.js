@@ -184,11 +184,11 @@ router.post('/poll', function(req, res){
       req.flash('error', err);
       return res.redirect('/blog');
     }
-    req.flash('success', 'posted successfully');
+    console.log('restraunt selection success');
     res.redirect('/poll_sucess');
   });
 
-  return res.redirect('/poll_sucess');
+  //return res.redirect('/poll_sucess');
 })
 
 
