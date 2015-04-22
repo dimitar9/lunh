@@ -18,7 +18,7 @@ Post.prototype.save = function save(callback) {
 	var post = {
 		user: this.user,
 		post: this.post,
-		time: this.time,
+		time: this.time
 	};
 	mongodb.open(function(err, db) {
 		if (err) {

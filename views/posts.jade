@@ -1,29 +1,13 @@
 
 h2 Please select the restraunt you would like to go this noon.
 
-form(method='post', action="/poll")
-  input(type='radio', value='Mandarin', name='chose_restraunt')
-  |       Mandarin
-  br
-  input(type='radio', value='HongkongTaste', name='chose_restraunt')
-  |       Hong Kong Taste 大排档
-  br
-  input(type='radio', value='China88', name='chose_restraunt')
-  |       88 China restraunt
-  br
-  input(type='radio', value='SichuanVillage', name='chose_restraunt')
-  |       Sichuan Village 川菜香
-  br
-  input(type='radio', value='HibachiBuffet', name='chose_restraunt')
-  |       Hibachi Buffet
-  br
-  input(type='radio', value='SizzlingExpress', name='chose_restraunt')
-  |       Sizzling Express
-  br
-  input(type='radio', value='PhoNew', name='chose_restraunt')
-  |       Pho New
-  br
-  input(type='submit', value='Submit')
+
+
+  form(method='post', action="/poll")
+    each val in [['Chipotle','chipotle-mexican-grill-fairfax-5' ],['Todai','todai-fairfax'], ['Mandarin',''], ['HongkongTast 大排档 ',''],['China88','']]
+      input(type='radio', value= val.toString(), name='chosen_restraunt')
+      a(href='http://www.yelp.com/biz/'+val[1])  #{val[0]}
+      br
 
   br
   br
