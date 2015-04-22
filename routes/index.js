@@ -174,11 +174,12 @@ router.get("/u/:user",function(req,res) {
 
 router.post("/poll",checkLogin);
 router.post('/poll', function(req, res){
-  console.log(req.body.chose_restraunt);
+  console.log(req.body.chosen_restraunt);
   req.flash('error', 'You have chosen restraunt.');
 
   var currentUser = req.session.user;
-  var restraunt = new Restraunt(currentUser.name, req.body.chose_restraunt);
+  var restraunt = new Restraunt(currentUser.name, req.body.chosen_restraunt);
+  console.log('restraunt is ' +  req.body.chosen_restraunt)
   restraunt.save(function(err) {
     if (err) {
       req.flash('error', err);

@@ -5,10 +5,10 @@ h2 Please select the restraunt you would like to go this noon.
 
   form(method='post', action="/poll")
     each val in [['Chipotle','chipotle-mexican-grill-fairfax-5' ],['Todai','todai-fairfax'], ['Mandarin',''], ['HongkongTast 大排档 ',''],['China88','']]
-      input(type='radio', value= val.toString(), name='chosen_restraunt')
+      input(type='radio', value=val[0], name='chosen_restraunt')
       a(href='http://www.yelp.com/biz/'+val[1])  #{val[0]}
       br
-
+    input(type='submit', value='Submit')
   br
   br
   br
